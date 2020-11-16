@@ -15,7 +15,7 @@ import net.proteanit.sql.DbUtils;
 public class NewJFrame extends javax.swing.JFrame {
 
     Connection con = null;
-    PreparedStatement pst = null;
+    PreparedStatement pst = null; //An object that represents a precompiled SQL statement.
     ResultSet rs = null;
     public NewJFrame() {
         initComponents();
@@ -238,13 +238,17 @@ public class NewJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //*
-        //This entire code inserts the user's data input into the MySQL Database
-        //*        
+        /*
+        /This entire block of codes inserts the user's data input into the MySQL Database
+        */        
         try{
             String sql = "INSERT INTO manga"
                     + "(Title, Genre, Author) "
                     + "VALUES (?,?,?)";
+            /*
+            Connects to the MySQL Database
+            Set Server Timezone to UTC (Fixes Timezone Connection Error by MySQL)
+            */
             con = DriverManager.getConnection("jdbc:mysql://localhost/manga?serverTimezone=UTC","root","");
             pst = con.prepareStatement(sql);
             pst.setString(1,txtTitle.getText());
@@ -260,11 +264,15 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        //*
-        //This entire code deletes a data from the MySQL Database
-        //*
+        /*
+        /This entire block of codes deletes a data from the MySQL Database
+        */
         try{
-            String sql = "DELETE FROM manga WHERE ID = ?";
+            String sql = "DELETE FROM manga WHERE ID = ?";//Tells which column it will be deleting
+            /*
+            Connects to the MySQL Database
+            Set Server Timezone to UTC (Fixes Timezone Connection Error by MySQL)
+            */
             con = DriverManager.getConnection("jdbc:mysql://localhost/manga?serverTimezone=UTC","root","");
             pst = con.prepareStatement(sql);
             pst.setString(1,txtID.getText());
@@ -278,11 +286,15 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        //*
-        //This entire code allows the updating of Data from the Database
-        //*
+        /*
+        /This entire block of codes allows the updating of Data from the Database
+        */
         try{
             String sql = "UPDATE manga SET Title=?, Genre=?, Author=? WHERE ID=?";
+            /*
+            Connects to the MySQL Database
+            Set Server Timezone to UTC (Fixes Timezone Connection Error by MySQL)
+            */
             con = DriverManager.getConnection("jdbc:mysql://localhost/manga?serverTimezone=UTC","root","");
             pst = con.prepareStatement(sql);
             pst.setString(4, txtID.getText());
@@ -299,9 +311,9 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //*
-        //This part only set the fields to null
-        //*
+        /*
+        This block of codes clears the Text Field of txtID,txtTitle, txt Gebre, txtAuthor
+        */        
         txtID.setText(null);
         txtTitle.setText(null);
         txtGenre.setText(null);
@@ -309,10 +321,14 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        //*
-        //This Code allows the sorting by Author
-        //* 
+        /*
+        /This entire block of codes allows the sorting by Author
+        */
         try{
+            /*
+            Connects to the MySQL Database
+            Set Server Timezone to UTC (Fixes Timezone Connection Error by MySQL)
+            */
             con = DriverManager.getConnection("jdbc:mysql://localhost/manga?serverTimezone=UTC","root","");
             String sql = "SELECT * FROM manga order by Author";
             pst = con.prepareStatement(sql);
@@ -325,10 +341,14 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        //*
-        //This Code allows the sorting by Title
-        //*
+        /*
+        /This entire block of codes allows the sorting by Title
+        */
         try{
+            /*
+            Connects to the MySQL Database
+            Set Server Timezone to UTC (Fixes Timezone Connection Error by MySQL)
+            */
             con = DriverManager.getConnection("jdbc:mysql://localhost/manga?serverTimezone=UTC","root","");
             String sql = "SELECT * FROM manga order by Title";
             pst = con.prepareStatement(sql);
@@ -339,11 +359,11 @@ public class NewJFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jButton6ActionPerformed
-
+    
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-         //*
-        // This code allows the sorting by Genre
-        //*
+         /*
+        /This entire block of codes allows the sorting by Genre
+        */
         try{
             con = DriverManager.getConnection("jdbc:mysql://localhost/manga?serverTimezone=UTC","root","");
             String sql = "SELECT * FROM manga order by Genre";
@@ -357,10 +377,14 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        //*
-        //This code allows the sorting by ID
-        //*
-    try{
+        /*
+        /This entire block of codes allows the sorting by ID
+        */
+    try{    
+            /*
+            Connects to the MySQL Database
+            Set Server Timezone to UTC (Fixes Timezone Connection Error by MySQL)
+            */
             con = DriverManager.getConnection("jdbc:mysql://localhost/manga?serverTimezone=UTC","root","");
             String sql = "SELECT * FROM manga order by ID";
             pst = con.prepareStatement(sql);
@@ -371,15 +395,20 @@ public class NewJFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }    
     }//GEN-LAST:event_jButton8ActionPerformed
-
+    
     public void showTableData(){
+        //Connect to MySQL Database and display it's data unto the Table//
         try{
+            /*
+            Connects to the MySQL Database
+            Set Server Timezone to UTC (Fixes Timezone Connection Error by MySQL)
+            */
             con = DriverManager.getConnection("jdbc:mysql://localhost/manga?serverTimezone=UTC","root","");
             String sql = "SELECT * FROM manga";
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                    
+            
         } catch(Exception ex){
             JOptionPane.showMessageDialog(null, ex);
         }
