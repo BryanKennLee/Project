@@ -254,7 +254,7 @@ public class NewJFrame extends javax.swing.JFrame {
             pst.setString(1,txtTitle.getText());
             pst.setString(2,txtGenre.getText());
             pst.setString(3,txtAuthor.getText());
-            pst.executeUpdate();
+            pst.executeUpdate();// Allows the exectution of the INSERT statement
             JOptionPane.showMessageDialog(null, "MANGA ADDED");
             
         } catch(HeadlessException | SQLException ex){
@@ -276,7 +276,7 @@ public class NewJFrame extends javax.swing.JFrame {
             con = DriverManager.getConnection("jdbc:mysql://localhost/manga?serverTimezone=UTC","root","");
             pst = con.prepareStatement(sql);
             pst.setString(1,txtID.getText());
-            pst.executeUpdate();
+            pst.executeUpdate();// Allows the execution of the DELETE statement
             JOptionPane.showMessageDialog(null, "MANGA DELETED");
             
         } catch(HeadlessException | SQLException ex){
@@ -301,7 +301,7 @@ public class NewJFrame extends javax.swing.JFrame {
             pst.setString(1,txtTitle.getText());
             pst.setString(2,txtGenre.getText());
             pst.setString(3,txtAuthor.getText());
-            pst.executeUpdate();
+            pst.executeUpdate();// Allows the execution of the UPDATE statement
             JOptionPane.showMessageDialog(null, "MANGA UPDATED");
             
         } catch(HeadlessException | SQLException ex){
@@ -332,7 +332,7 @@ public class NewJFrame extends javax.swing.JFrame {
             con = DriverManager.getConnection("jdbc:mysql://localhost/manga?serverTimezone=UTC","root","");
             String sql = "SELECT * FROM manga order by Author";
             pst = con.prepareStatement(sql);
-            rs = pst.executeQuery();
+            rs = pst.executeQuery();//Executes statements that returns tabular data
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                     
         } catch(Exception ex){
@@ -352,7 +352,7 @@ public class NewJFrame extends javax.swing.JFrame {
             con = DriverManager.getConnection("jdbc:mysql://localhost/manga?serverTimezone=UTC","root","");
             String sql = "SELECT * FROM manga order by Title";
             pst = con.prepareStatement(sql);
-            rs = pst.executeQuery();
+            rs = pst.executeQuery();//Executes statements that returns tabular data
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                     
         } catch(Exception ex){
@@ -368,7 +368,7 @@ public class NewJFrame extends javax.swing.JFrame {
             con = DriverManager.getConnection("jdbc:mysql://localhost/manga?serverTimezone=UTC","root","");
             String sql = "SELECT * FROM manga order by Genre";
             pst = con.prepareStatement(sql);
-            rs = pst.executeQuery();
+            rs = pst.executeQuery();//Executes statements that returns tabular data
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                     
         } catch(Exception ex){
@@ -388,7 +388,7 @@ public class NewJFrame extends javax.swing.JFrame {
             con = DriverManager.getConnection("jdbc:mysql://localhost/manga?serverTimezone=UTC","root","");
             String sql = "SELECT * FROM manga order by ID";
             pst = con.prepareStatement(sql);
-            rs = pst.executeQuery();
+            rs = pst.executeQuery();//Executes statements that returns tabular data
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                     
         } catch(Exception ex){
@@ -406,7 +406,7 @@ public class NewJFrame extends javax.swing.JFrame {
             con = DriverManager.getConnection("jdbc:mysql://localhost/manga?serverTimezone=UTC","root","");
             String sql = "SELECT * FROM manga";
             pst = con.prepareStatement(sql);
-            rs = pst.executeQuery();
+            rs = pst.executeQuery();//Executes statements that returns tabular data
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
             
         } catch(Exception ex){
